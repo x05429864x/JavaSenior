@@ -1,5 +1,6 @@
 package com.atguigu.java1;
 
+import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -24,6 +25,10 @@ class Window implements Runnable{
     //1.实例化ReentrantLock
     private ReentrantLock lock = new ReentrantLock();
 
+    //条件队列
+    Condition condition1 = lock.newCondition();
+
+
     @Override
     public void run() {
         while(true){
@@ -31,7 +36,7 @@ class Window implements Runnable{
 
                 //2.调用锁定方法lock()
                 lock.lock();
-
+                condition1.signal();
                 if(ticket > 0){
 
                     try {
@@ -42,6 +47,11 @@ class Window implements Runnable{
 
                     System.out.println(Thread.currentThread().getName() + "：售票，票号为：" + ticket);
                     ticket--;
+                    try {
+                        condition1.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }else{
                     break;
                 }
@@ -64,10 +74,10 @@ public class LockTest {
 
         t1.setName("窗口1");
         t2.setName("窗口2");
-        t3.setName("窗口3");
+//        t3.setName("窗口3");
 
         t1.start();
         t2.start();
-        t3.start();
+//        t3.start();
     }
 }

@@ -28,7 +28,7 @@ class Window3 implements Runnable {
 
     private synchronized void show(){//同步监视器：this
         //synchronized (this){
-
+        notify();
             if (ticket > 0) {
 
                 try {
@@ -40,6 +40,11 @@ class Window3 implements Runnable {
                 System.out.println(Thread.currentThread().getName() + ":卖票，票号为：" + ticket);
 
                 ticket--;
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         //}
     }

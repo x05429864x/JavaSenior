@@ -17,7 +17,7 @@ package com.atguigu.java2;
  * @author shkstart
  * @create 2019-02-15 下午 4:48
  */
-class Clerk{
+class Clerk{//店员
 
     private int productCount = 0;
     //生产产品
