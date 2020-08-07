@@ -88,8 +88,19 @@ public class CompareTest {
         System.out.println(Arrays.toString(arr));
     }
 
+    /**
+     *  如果方法返回正整数，则表示o1大于o2；
+     *  如果返回0，表示相等；
+     *  返回负整数，表示o1小于o2。
+     */
     @Test
     public void test4(){
+        String a = "AA";
+        String b = "BB";
+        System.out.println(a.compareTo(b));//负整数
+        String name1 = "xiaomiMouse";
+        String name2 = "lenovoMouse";
+        System.out.println(name1.compareTo(name2));//正整数
         Goods[] arr = new Goods[6];
         arr[0] = new Goods("lenovoMouse",34);
         arr[1] = new Goods("dellMouse",43);
@@ -98,7 +109,22 @@ public class CompareTest {
         arr[4] = new Goods("huaweiMouse",224);
         arr[5] = new Goods("microsoftMouse",43);
 
-        Arrays.sort(arr, new Comparator() {
+
+        //price从小到大 name从高到低排序
+        Arrays.sort(arr, new Comparator<Goods>() {
+            @Override
+            public int compare(Goods o1, Goods o2) {
+                if(o1.getPrice()>o2.getPrice()){
+                    return 1;
+                }else if(o1.getPrice()<o2.getPrice()){
+                    return -1;
+                }else{
+                    return -o1.getName().compareTo(o2.getName());
+                }
+
+            }
+        });
+        /*Arrays.sort(arr, new Comparator() {
             //指明商品比较大小的方式:按照产品名称从低到高排序,再按照价格从高到低排序
             @Override
             public int compare(Object o1, Object o2) {
@@ -113,7 +139,7 @@ public class CompareTest {
                 }
                 throw new RuntimeException("输入的数据类型不一致");
             }
-        });
+        });*/
 
         System.out.println(Arrays.toString(arr));
     }

@@ -146,4 +146,20 @@ public class JDK8DateTimeTest {
 
     }
 
+    @Test
+    public void test4(){
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter df1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime time = LocalDateTime.now();
+        String localTime = df.format(time);
+        System.out.println("LocalDateTime转成String类型的时间："+localTime);
+        LocalDate ldt = LocalDate.parse("2018-06-01",df1);
+        System.out.println("String类型的时间转成LocalDateTime："+ldt);
+        Date date = Date.from(ldt.atStartOfDay(ZoneOffset.ofHours(8)).toInstant());
+        LocalDateTime localDateTime = date.toInstant().atZone(ZoneOffset.ofHours(8)).toLocalDateTime();
+        System.out.println(df.format(localDateTime));
+        LocalDate localDate = date.toInstant().atZone(ZoneOffset.ofHours(8)).toLocalDate();
+        System.out.println(localDate);
+    }
+
 }
