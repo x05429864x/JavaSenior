@@ -69,7 +69,17 @@ public class TreeSetTest {
             }
         };
 
-        TreeSet set = new TreeSet(com);
+
+//        TreeSet set = new TreeSet(com);
+        TreeSet set = new TreeSet((o1,o2)->{
+            if(o1 instanceof User && o2 instanceof User){
+                User u1 = (User) o1;
+                User u2 = (User) o2;
+                return Integer.compare(u1.getAge(),u2.getAge());
+            }else{
+                throw new RuntimeException("输入的数据类型不匹配");
+            }
+        });
         set.add(new User("Tom",12));
         set.add(new User("Jerry",32));
         set.add(new User("Jim",2));

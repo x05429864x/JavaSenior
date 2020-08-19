@@ -4,10 +4,7 @@ import com.atguigu.java2.Employee;
 import com.atguigu.java2.EmployeeData;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -56,6 +53,9 @@ public class StreamAPITest2 {
 //        max(Comparator c)——返回流中最大值
 //        练习：返回最高的工资：
         Stream<Double> salaryStream = employees.stream().map(e -> e.getSalary());
+        Optional<Employee> max = employees.stream().max(Comparator.comparingDouble(Employee::getSalary));
+        Optional<Double> aDouble = max.map(e -> e.getSalary());
+        System.out.println("max:"+aDouble);
         Optional<Double> maxSalary = salaryStream.max(Double::compare);
         System.out.println(maxSalary);
 //        min(Comparator c)——返回流中最小值

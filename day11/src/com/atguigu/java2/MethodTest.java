@@ -49,13 +49,13 @@ public class MethodTest {
             }
 
             //2.权限修饰符
-            System.out.print(Modifier.toString(m.getModifiers()) + "\t");
+            System.out.print("权限修饰符:"+Modifier.toString(m.getModifiers()) + "\t");
 
             //3.返回值类型
-            System.out.print(m.getReturnType().getName() + "\t");
+            System.out.print("返回值类型:"+m.getReturnType().getName() + "\t");
 
             //4.方法名
-            System.out.print(m.getName());
+            System.out.print("方法名:"+m.getName());
             System.out.print("(");
             //5.形参列表
             Class[] parameterTypes = m.getParameterTypes();

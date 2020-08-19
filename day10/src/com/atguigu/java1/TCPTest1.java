@@ -26,7 +26,7 @@ public class TCPTest1 {
         OutputStream os = null;
         try {
             //1.创建Socket对象，指明服务器端的ip和端口号
-            InetAddress inet = InetAddress.getByName("192.168.14.100");
+            InetAddress inet = InetAddress.getByName("127.0.0.1");
             socket = new Socket(inet,8899);
             //2.获取一个输出流，用于输出数据
             os = socket.getOutputStream();

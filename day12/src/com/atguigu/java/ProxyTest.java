@@ -14,7 +14,7 @@ import java.lang.reflect.Proxy;
 
 interface Human{
 
-    String getBelief();
+    void getBelief();
 
     void eat(String food);
 
@@ -24,8 +24,8 @@ class SuperMan implements Human{
 
 
     @Override
-    public String getBelief() {
-        return "I believe I can fly!";
+    public void getBelief() {
+        System.out.println("I believe I can fly!");
     }
 
     @Override
@@ -102,8 +102,7 @@ public class ProxyTest {
         //proxyInstance:代理类的对象
         Human proxyInstance = (Human) ProxyFactory.getProxyInstance(superMan);
         //当通过代理类对象调用方法时，会自动的调用被代理类中同名的方法
-        String belief = proxyInstance.getBelief();
-        System.out.println(belief);
+        proxyInstance.getBelief();
         proxyInstance.eat("四川麻辣烫");
 
         System.out.println("*****************************");
